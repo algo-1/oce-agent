@@ -32,14 +32,29 @@ var tsgService = new TsgService(memory);
 await tsgService.IndexTsgsAsync("./Data/Tsgs");
 
 // Sample incident
-var incidentDescription = "User unable to access the application. Error message: 'Application not found'.";
-var relevantTsg = await tsgService.RetrieveRelevantTsgAsync(incidentDescription);
-if (relevantTsg is not null)
+while (true)
 {
-    Console.WriteLine($"Relevant TSG found: {relevantTsg}");
-}
-else
-{
-    Console.WriteLine("No relevant TSG found.");
-}
+    Console.WriteLine("Please enter the incident description (or type 'exit' to quit):");
+    var incidentDescription = Console.ReadLine();
 
+    if (string.Equals(incidentDescription, "exit", StringComparison.OrdinalIgnoreCase))
+    {
+        break;
+    }
+
+    if (string.IsNullOrEmpty(incidentDescription))
+    {
+        Console.WriteLine("Incident description cannot be empty.");
+        continue;
+    }
+
+    var relevantTsg = await tsgService.RetrieveRelevantTsgAsync(incidentDescription);
+    if (relevantTsg is not null)
+    {
+        Console.WriteLine($"Relevant TSG found: {relevantTsg}");
+    }
+    else
+    {
+        Console.WriteLine("No relevant TSG found.");
+    }
+}
