@@ -1,0 +1,14 @@
+{
+  "Id": "1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p",
+  "Title": "How to Reset Your Password",
+  "Description": "Follow these steps to reset your password if you have forgotten it.",
+  "Steps": [
+    "Go to the login page.",
+    "Click on 'Forgot Password'.",
+    "Enter your registered email address.",
+    "Check your email for the password reset link.",
+    "Click on the link and enter a new password.",
+    "Confirm the new password and submit."
+  ],
+  "Tags": ["password", "reset", "login", "security"]
+}

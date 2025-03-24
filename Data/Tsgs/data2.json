@@ -1,0 +1,12 @@
+{
+  "Id": "1a2b3c4d-5e6f-7g8h-9i0j-k1l2m3n4o5p6",
+  "Title": "Application Not Found",
+  "Description": "This TSG resolves the issue where the application is not found.",
+  "Steps": [
+    "Check if the application is installed.",
+    "Verify the application path.",
+    "Ensure the application is not blocked by antivirus.",
+    "Reinstall the application if necessary."
+  ],
+  "Tags": ["application", "not found", "error", "troubleshooting"]
+}
