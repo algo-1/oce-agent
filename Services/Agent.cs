@@ -12,6 +12,7 @@ public class Agent
     private readonly int _maxWorkers;
     private SemanticTextMemory _memory;
     private string _tsgDir = "./Data/Tsgs";
+    private TsgService _tsgService;
 
     public Agent(int maxWorkers, SemanticTextMemory memory)
     {
@@ -20,6 +21,7 @@ public class Agent
         _workers = new List<Worker>();
         _cts = new CancellationTokenSource();
         _memory = memory;
+        _tsgService = new TsgService(_memory);
 
         // Index TSGs
         Task.Run(() =>
@@ -32,7 +34,7 @@ public class Agent
     {
         for (int i = 0; i < _maxWorkers; i++)
         {
-            var worker = new Worker(_incidentQueue, i);
+            var worker = new Worker(_incidentQueue, i, _tsgService);
             _workers.Add(worker);
             worker.Start();
         }

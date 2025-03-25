@@ -29,34 +29,6 @@ var memoryStore = new QdrantMemoryStore("http://localhost:6333", vectorSize: 153
 var memory = new SemanticTextMemory(memoryStore, kernel.Services.GetRequiredService<ITextEmbeddingGenerationService>());
 
 
-// // Sample incident
-// while (true)
-// {
-//     Console.WriteLine("Please enter the incident description (or type 'exit' to quit):");
-//     var incidentDescription = Console.ReadLine();
-
-//     if (string.Equals(incidentDescription, "exit", StringComparison.OrdinalIgnoreCase))
-//     {
-//         break;
-//     }
-
-//     if (string.IsNullOrEmpty(incidentDescription))
-//     {
-//         Console.WriteLine("Incident description cannot be empty.");
-//         continue;
-//     }
-
-//     var relevantTsg = await tsgService.RetrieveRelevantTsgAsync(incidentDescription);
-//     if (relevantTsg is not null)
-//     {
-//         Console.WriteLine($"Relevant TSG found: {relevantTsg}");
-//     }
-//     else
-//     {
-//         Console.WriteLine("No relevant TSG found.");
-//     }
-// }
-
 Console.WriteLine("Press 'q' to quit or any other key to continue processing incidents...");
 
 // Use Agent to process incidents
@@ -67,12 +39,12 @@ try
     agent.Start();
 
     // Simulate adding incidents to the queue
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 6; i++)
     {
         var incident = new Incident
         {
             Title = $"Incident {i + 1}",
-            Description = $"Description for incident {i + 1}",
+            Description = GetRandomDescription(),
             Status = "New",
             Severity = GetRandomSeverity(),
             CreatedAt = DateTime.UtcNow,
@@ -100,6 +72,20 @@ catch (Exception)
     // Stop the agent and clean up resources
     agent.Stop();
     Console.WriteLine("Agent stopped.");
+}
+
+string GetRandomDescription()
+{
+    var descriptions = new[]
+    {
+        "Database connection error",
+        "API response timeout",
+        "User forgot password",
+        "Service unavailable",
+        "Application not found"
+    };
+    var random = new Random();
+    return descriptions[random.Next(descriptions.Length)];
 }
 
 string GetRandomSeverity()

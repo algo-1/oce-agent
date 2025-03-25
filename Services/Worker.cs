@@ -8,12 +8,14 @@ public class Worker
     private readonly ConcurrentPriorityQueue<Incident> _incidentQueue;
     private readonly int _workerId;
     private readonly CancellationTokenSource _cts;
+    private readonly TsgService _tsgService;
 
-    public Worker(ConcurrentPriorityQueue<Incident> incidentQueue, int workerId)
+    public Worker(ConcurrentPriorityQueue<Incident> incidentQueue, int workerId, TsgService tsgService)
     {
         _incidentQueue = incidentQueue;
         _workerId = workerId;
         _cts = new CancellationTokenSource();
+        _tsgService = tsgService;
     }
 
     public void Start()
@@ -30,11 +32,19 @@ public class Worker
                 var incident = _incidentQueue.Dequeue();
                 Console.WriteLine($"Worker {_workerId} processing incident: {incident.Title}");
 
-                // TODO: Replace with actual processing logic
-                await Task.Delay(1000, token);
-                // TODO: Replace with actual processing logic
+                // TODO: Update processing logic
+                // query the TSG service for relevant TSGs
+                var relevantTsg = await _tsgService.RetrieveRelevantTsgAsync(incident.Description);
+                if (relevantTsg is not null)
+                {
+                    Console.WriteLine($"Worker {_workerId} found relevant TSG: {relevantTsg} for incident: {incident.Description}");
+                }
+                else
+                {
+                    Console.WriteLine($"Worker {_workerId} found no relevant TSG for incident {incident.Description}.");
+                }
 
-                Console.WriteLine($"Worker {_workerId} finished processing incident: {incident.Title}");
+                Console.WriteLine($"Worker {_workerId} finished processing incident: {incident.Description}");
             }
             else
             {
