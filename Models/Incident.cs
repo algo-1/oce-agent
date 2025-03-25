@@ -11,4 +11,9 @@ public class Incident
     public required string Severity { get; set; }
     public required string AssignedTo { get; set; }
     public List<string> Tags { get; set; } = new();
+
+    public override string ToString()
+    {
+        return $"Incident ID: {Id}, Title: {Title}, Status: {Status}, Severity: {Severity}, Assigned To: {AssignedTo}";
+    }
 }
