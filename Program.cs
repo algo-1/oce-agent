@@ -28,9 +28,6 @@ var kernel = builder.Build();
 var memoryStore = new QdrantMemoryStore("http://localhost:6333", vectorSize: 1536);
 var memory = new SemanticTextMemory(memoryStore, kernel.Services.GetRequiredService<ITextEmbeddingGenerationService>());
 
-// Index TSGs
-var tsgService = new TsgService(memory);
-// await tsgService.IndexTsgsAsync("./Data/Tsgs");
 
 // // Sample incident
 // while (true)
@@ -60,11 +57,13 @@ var tsgService = new TsgService(memory);
 //     }
 // }
 
+Console.WriteLine("Press 'q' to quit or any other key to continue processing incidents...");
+
 // Use Agent to process incidents
-var agent = new Agent(maxWorkers: 5);
+var agent = new Agent(maxWorkers: 5, memory: memory);
 try
 {
-    // Initialize the agent with the memory store
+    // Start the agent
     agent.Start();
 
     // Simulate adding incidents to the queue
@@ -86,6 +85,13 @@ try
 
     while (true)
     {
+        var key = Console.ReadKey(true).Key;
+
+        if (key == ConsoleKey.Q)
+        {
+            agent.Stop();
+            break;
+        }
     }
 }
 catch (Exception)

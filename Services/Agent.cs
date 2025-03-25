@@ -1,3 +1,4 @@
+using Microsoft.SemanticKernel.Memory;
 using OncallAgent.Models;
 using OncallAgent.Utils;
 
@@ -9,13 +10,22 @@ public class Agent
     private readonly List<Worker> _workers;
     private readonly CancellationTokenSource _cts;
     private readonly int _maxWorkers;
+    private SemanticTextMemory _memory;
+    private string _tsgDir = "./Data/Tsgs";
 
-    public Agent(int maxWorkers)
+    public Agent(int maxWorkers, SemanticTextMemory memory)
     {
         _maxWorkers = maxWorkers;
         _incidentQueue = new ConcurrentPriorityQueue<Incident>();
         _workers = new List<Worker>();
         _cts = new CancellationTokenSource();
+        _memory = memory;
+
+        // Index TSGs
+        Task.Run(() =>
+        {
+            IndexTsgsAsync(_tsgDir);
+        }).ConfigureAwait(false);
     }
 
     public void Start()
@@ -86,4 +96,9 @@ public class Agent
         Console.WriteLine($"Incident added: {incident.Title} with priority {GetPriority(incident)}");
     }
 
+    public async void IndexTsgsAsync(string tsgDirectory)
+    {
+        var tsgService = new TsgService(_memory);
+        await tsgService.IndexTsgsAsync(tsgDirectory);
+    }
 }
