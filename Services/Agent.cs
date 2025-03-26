@@ -100,7 +100,6 @@ public class Agent
 
     public async void IndexTsgsAsync(string tsgDirectory)
     {
-        var tsgService = new TsgService(_memory);
-        await tsgService.IndexTsgsAsync(tsgDirectory);
+        await _tsgService.IndexTsgsAsync(tsgDirectory);
     }
 }

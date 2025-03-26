@@ -28,7 +28,7 @@ public class TsgService
                 await _memory.SaveInformationAsync(
                     collection: CollectionName,
                     id: tsgModel.Id,
-                    text: tsg,
+                    text: string.Join("\n", tsgModel.Steps),
                     description: tsgModel.Description);
                 Console.WriteLine($"Indexed TSG: {tsgModel.Title}");
             }
@@ -39,8 +39,8 @@ public class TsgService
     {
         await foreach (var result in _memory.SearchAsync(CollectionName, query, limit: 1))
         {
-            return result?.Metadata.Text; // Get only the first result
+            return string.Join("\n", result?.Metadata.Description, result?.Metadata.Text); // Get only the first result
         }
-        return null;
+        return null; // No relevant TSG found
     }
 }
