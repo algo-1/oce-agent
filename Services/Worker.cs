@@ -51,7 +51,8 @@ public class Worker
                     Tsg = relevantTsg,
                     Status = incident.Status,
                     Link = incident.Link,
-                    Severity = incident.Severity
+                    Severity = incident.Severity,
+                    CreatedAt = incident.CreatedAt
                 }, Agent.GetPriority(incident));
 
                 Console.WriteLine($"Worker {_workerId} finished processing incident: {incident.Description}");
