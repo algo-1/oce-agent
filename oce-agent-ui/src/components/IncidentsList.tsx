@@ -147,7 +147,7 @@ const IncidentsList: React.FC = () => {
               <MessageBar messageBarType={MessageBarType.info}>
                 You can use the TSG below to aid mitigation.
               </MessageBar>
-              <Text block>selectedIncident.tsg</Text>
+              <Text block>{selectedIncident.tsg}</Text>
             </>
           )}
 
