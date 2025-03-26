@@ -35,6 +35,35 @@ public class TsgService
         }
     }
 
+    public async Task IndexSingleTsgAsync(string tsgFilePath)
+    {
+        var tsg = await File.ReadAllTextAsync(tsgFilePath);
+        var tsgModel = JsonSerializer.Deserialize<TsgModel>(tsg);
+
+        if (tsgModel != null)
+        {
+            await _memory.SaveInformationAsync(
+                collection: CollectionName,
+                id: tsgModel.Id,
+                text: string.Join("\n", tsgModel.Steps),
+                description: tsgModel.Description);
+            Console.WriteLine($"Indexed TSG: {tsgModel.Title}");
+        }
+    }
+
+    public async Task IndexSingleTsgAsync(TsgModel tsgModel)
+    {
+        if (tsgModel != null)
+        {
+            await _memory.SaveInformationAsync(
+                collection: CollectionName,
+                id: tsgModel.Id,
+                text: string.Join("\n", tsgModel.Steps),
+                description: tsgModel.Description);
+            Console.WriteLine($"Indexed TSG: {tsgModel.Title}");
+        }
+    }
+
     public async Task<string?> RetrieveRelevantTsgAsync(string query)
     {
         await foreach (var result in _memory.SearchAsync(CollectionName, query, limit: 1))
