@@ -49,6 +49,11 @@ var app = builder.Build();
 
 // Configure middleware
 app.UseRouting();
+app.UseCors(x => x
+           .AllowAnyMethod()
+           .AllowAnyHeader()
+           .SetIsOriginAllowed(origin => true)
+           .AllowCredentials());
 
 // Map API controllers and SignalR hub
 app.MapControllers(); // Map API controllers
