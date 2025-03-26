@@ -19,23 +19,24 @@ public class IncidentSimulationService : BackgroundService
         while (!stoppingToken.IsCancellationRequested)
         {
             // Simulate adding a new incident
+            var number = random.Next(1, 1000);
             var incident = new Incident
             {
-                Title = $"Incident {random.Next(1, 1000)}",
+                Title = $"Incident {number}",
                 Description = GetRandomDescription(),
                 Status = "New",
                 Severity = GetRandomSeverity(),
                 CreatedAt = DateTime.UtcNow,
                 AssignedTo = "Agent",
                 Tags = new List<string> { "tag1", "tag2" },
-                Link = $"http://example.com/incident/{random.Next(1, 1000)}"
+                Link = $"http://example.com/incident/{number}"
             };
 
             _agent.AddIncident(incident); // Add the incident to the agent's queue
             Console.WriteLine($"Simulated new incident: {incident.Title}");
 
             // Wait for a random interval before adding the next incident
-            await Task.Delay(random.Next(200, 5000), stoppingToken); // 2 ms -5 seconds
+            await Task.Delay(random.Next(1000, 12000), stoppingToken); // 1 - 120 seconds
         }
     }
 
