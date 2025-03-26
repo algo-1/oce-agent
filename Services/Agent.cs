@@ -10,11 +10,11 @@ public class Agent
     private readonly List<Worker> _workers;
     private readonly CancellationTokenSource _cts;
     private readonly int _maxWorkers;
-    private SemanticTextMemory _memory;
+    private ISemanticTextMemory _memory;
     private string _tsgDir = "./Data/Tsgs";
     private TsgService _tsgService;
 
-    public Agent(int maxWorkers, SemanticTextMemory memory)
+    public Agent(int maxWorkers, ISemanticTextMemory memory)
     {
         _maxWorkers = maxWorkers;
         _incidentQueue = new ConcurrentPriorityQueue<Incident>();
