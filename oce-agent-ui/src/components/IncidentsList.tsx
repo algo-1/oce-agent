@@ -62,7 +62,68 @@ const IncidentsList: React.FC = () => {
       }
     );
   };
-  const columns: IColumn[] = [];
+
+  const columns: IColumn[] = [
+    {
+      key: "id",
+      name: "ID",
+      fieldName: "id",
+      minWidth: 50,
+      maxWidth: 100,
+      isResizable: true,
+    },
+    {
+      key: "title",
+      name: "Title",
+      fieldName: "title",
+      minWidth: 150,
+      maxWidth: 300,
+      isResizable: true,
+    },
+    {
+      key: "severity",
+      name: "Severity",
+      fieldName: "severity",
+      minWidth: 100,
+      maxWidth: 150,
+      isResizable: true,
+    },
+    {
+      key: "status",
+      name: "Status",
+      fieldName: "status",
+      minWidth: 100,
+      maxWidth: 150,
+      isResizable: true,
+    },
+    {
+      key: "createdAt",
+      name: "Created At",
+      fieldName: "createdAt",
+      minWidth: 150,
+      maxWidth: 200,
+      isResizable: true,
+      onRender: (item: Incident) => new Date(item.createdAt).toLocaleString(),
+    },
+    {
+      key: "view",
+      name: "Actions",
+      minWidth: 100,
+      onRender: (item: Incident) => (
+        <Stack horizontal tokens={{ childrenGap: 10 }}>
+          <DefaultButton
+            text="View"
+            onClick={() => setSelectedIncident(item)}
+          ></DefaultButton>
+          <DefaultButton
+            text="Open Incident"
+            href={item.link}
+            target="_blank"
+          ></DefaultButton>
+        </Stack>
+      ),
+    },
+  ];
 
   return (
     <div style={{ padding: 5 }}>
