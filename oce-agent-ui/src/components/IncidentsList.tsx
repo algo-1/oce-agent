@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import * as signalR from "@microsoft/signalr";
-import axios from "axios";
 
 import {
   DetailsList,
