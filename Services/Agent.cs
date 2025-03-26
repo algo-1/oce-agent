@@ -14,14 +14,14 @@ public class Agent
     private string _tsgDir = "./Data/Tsgs";
     private TsgService _tsgService;
 
-    public Agent(int maxWorkers, ISemanticTextMemory memory)
+    public Agent(int maxWorkers, ISemanticTextMemory memory, TsgService tsgService)
     {
         _maxWorkers = maxWorkers;
         _incidentQueue = new ConcurrentPriorityQueue<Incident>();
         _workers = new List<Worker>();
         _cts = new CancellationTokenSource();
         _memory = memory;
-        _tsgService = new TsgService(_memory);
+        _tsgService = tsgService;
 
         // Index TSGs
         Task.Run(() =>

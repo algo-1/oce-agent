@@ -32,12 +32,26 @@ var kernel = kernelBuilder.Build();
 var memoryStore = new QdrantMemoryStore("http://localhost:6333", vectorSize: 1536);
 var memory = new SemanticTextMemory(memoryStore, kernel.Services.GetRequiredService<ITextEmbeddingGenerationService>());
 
+// Configure CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend", policy =>
+    {
+        policy.WithOrigins("http://localhost:5173")
+              .AllowAnyMethod()
+              .AllowAnyHeader()
+              .AllowCredentials();
+    });
+});
+
 // Register services in the DI container
 builder.Services.AddSingleton<ISemanticTextMemory>(memory); // Register memory
+builder.Services.AddSingleton<TsgService>(); // Register TsgService
 builder.Services.AddSingleton<Agent>(sp =>
 {
     var memory = sp.GetRequiredService<ISemanticTextMemory>();
-    return new Agent(maxWorkers: 5, memory: memory);
+    var tsgService = sp.GetRequiredService<TsgService>();
+    return new Agent(maxWorkers: 5, memory: memory, tsgService: tsgService);
 });
 builder.Services.AddHostedService<AgentHostedService>();
 builder.Services.AddHostedService<ProcessedIncidentQueueService>(); // Background service for incident queue
@@ -49,11 +63,12 @@ var app = builder.Build();
 
 // Configure middleware
 app.UseRouting();
-app.UseCors(x => x
-           .AllowAnyMethod()
-           .AllowAnyHeader()
-           .SetIsOriginAllowed(origin => true)
-           .AllowCredentials());
+app.UseCors("AllowFrontend");
+// app.UseCors(x => x
+//            .AllowAnyMethod()
+//            .AllowAnyHeader()
+//            .SetIsOriginAllowed(origin => true)
+//            .AllowCredentials());
 
 // Map API controllers and SignalR hub
 app.MapControllers(); // Map API controllers
