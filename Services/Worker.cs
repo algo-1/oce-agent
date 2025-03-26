@@ -48,7 +48,7 @@ public class Worker
             }
             else
             {
-                await Task.Delay(500, token); // Wait before checking the queue again
+                await Task.Delay(100, token); // Wait before checking the queue again
             }
         }
     }
