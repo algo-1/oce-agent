@@ -49,7 +49,8 @@ try
             Severity = GetRandomSeverity(),
             CreatedAt = DateTime.UtcNow,
             AssignedTo = "Agent",
-            Tags = new List<string> { "tag1", "tag2" }
+            Tags = new List<string> { "tag1", "tag2" },
+            Link = $"http://example.com/incident/{i}"
         };
 
         agent.AddIncident(incident);

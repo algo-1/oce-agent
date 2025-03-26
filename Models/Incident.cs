@@ -11,6 +11,7 @@ public class Incident
     public required string Severity { get; set; }
     public required string AssignedTo { get; set; }
     public List<string> Tags { get; set; } = new();
+    public required string Link { get; set; }
 
     public override string ToString()
     {

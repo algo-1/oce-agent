@@ -9,12 +9,11 @@ public class ProcessedIncident
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
     public required string Severity { get; set; }
-    public required string AssignedTo { get; set; }
-    public List<TsgModel> Tsgs { get; set; } = new();
-    public List<string> Tags { get; set; } = new();
+    public string? Tsg { get; set; } = null;
+    public required string Link { get; set; }
 
     public override string ToString()
     {
-        return $"Incident ID: {Id}, Title: {Title}, Status: {Status}, Severity: {Severity}, Assigned To: {AssignedTo}";
+        return $"Incident ID: {Id}, Title: {Title}, Status: {Status}, Severity: {Severity}";
     }
 }

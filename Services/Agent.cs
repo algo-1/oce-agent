@@ -80,7 +80,7 @@ public class Agent
         Console.WriteLine("Incident queue cleared.");
     }
 
-    public int GetPriority(Incident incident)
+    public static int GetPriority(Incident incident)
     {
         return incident.Severity switch
         {

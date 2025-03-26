@@ -44,6 +44,16 @@ public class Worker
                     Console.WriteLine($"Worker {_workerId} found no relevant TSG for incident {incident.Description}.");
                 }
 
+                ProcessedIncidentQueueService.EnqueueIncident(new ProcessedIncident
+                {
+                    Title = incident.Title,
+                    Description = incident.Description,
+                    Tsg = relevantTsg,
+                    Status = incident.Status,
+                    Link = incident.Link,
+                    Severity = incident.Severity
+                }, Agent.GetPriority(incident));
+
                 Console.WriteLine($"Worker {_workerId} finished processing incident: {incident.Description}");
             }
             else
