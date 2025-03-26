@@ -132,28 +132,28 @@ const IncidentsList: React.FC = () => {
           headerText={`Incident Details - ${selectedIncident.title}`}
         >
           <Text>
-            <strong>Severity:</strong> {selectedIncident.severity}
-          </Text>
+            <strong>Severity:</strong> {" " + selectedIncident.severity}
+          </Text>{" "}
           <Text>
-            <strong>Status:</strong> {selectedIncident.status}
+            <strong>Status:</strong> {" " + selectedIncident.status}
           </Text>
-
           {selectedIncident.tsg && (
             <>
               <MessageBar messageBarType={MessageBarType.info}>
-                You can use the TSG below to aid mitigation.
+                You can use the steps below to aid mitigation.
               </MessageBar>
-              <Text block>{selectedIncident.tsg}</Text>
+              <Text block>
+                <pre>{selectedIncident.tsg}</pre>
+              </Text>
             </>
           )}
-
           <Stack
             horizontal
             tokens={{ childrenGap: 10 }}
             style={{ marginTop: 20 }}
           >
             <DefaultButton
-              text="Copy TSG Steps"
+              text="Copy Steps"
               onClick={() => copyTSGToClipboard(selectedIncident.tsg)}
             ></DefaultButton>
             <DefaultButton
