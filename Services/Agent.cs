@@ -84,11 +84,12 @@ public class Agent
     {
         return incident.Severity switch
         {
-            "Critical" => 1,
-            "High" => 2,
-            "Medium" => 3,
-            "Low" => 4,
-            _ => 5 // Default priority for unknown severity
+            "Sev 1" => 1,
+            "Sev 2" => 2,
+            "Sev 2.5" => 3,
+            "Sev 3" => 4,
+            "Sev 4" => 5,
+            _ => 6 // Default priority for unknown severity
         };
     }
 

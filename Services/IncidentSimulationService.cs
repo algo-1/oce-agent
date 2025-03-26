@@ -56,7 +56,7 @@ public class IncidentSimulationService : BackgroundService
 
     private string GetRandomSeverity()
     {
-        var severities = new[] { "Critical", "High", "Medium", "Low" };
+        var severities = new[] { "Sev 1", "Sev 2", "Sev 2.5", "Sev 3", "Sev 4" };
         var random = new Random();
         return severities[random.Next(severities.Length)];
     }
