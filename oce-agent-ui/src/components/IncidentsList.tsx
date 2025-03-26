@@ -69,7 +69,6 @@ const IncidentsList: React.FC = () => {
       name: "ID",
       fieldName: "id",
       minWidth: 50,
-      maxWidth: 100,
       isResizable: true,
     },
     {
@@ -77,7 +76,6 @@ const IncidentsList: React.FC = () => {
       name: "Title",
       fieldName: "title",
       minWidth: 150,
-      maxWidth: 300,
       isResizable: true,
     },
     {
@@ -85,7 +83,6 @@ const IncidentsList: React.FC = () => {
       name: "Severity",
       fieldName: "severity",
       minWidth: 100,
-      maxWidth: 150,
       isResizable: true,
     },
     {
@@ -93,7 +90,6 @@ const IncidentsList: React.FC = () => {
       name: "Status",
       fieldName: "status",
       minWidth: 100,
-      maxWidth: 150,
       isResizable: true,
     },
     {
@@ -101,16 +97,16 @@ const IncidentsList: React.FC = () => {
       name: "Created At",
       fieldName: "createdAt",
       minWidth: 150,
-      maxWidth: 200,
       isResizable: true,
       onRender: (item: Incident) => new Date(item.createdAt).toLocaleString(),
     },
     {
       key: "view",
       name: "Actions",
-      minWidth: 100,
+      minWidth: 250,
+      isResizable: true,
       onRender: (item: Incident) => (
-        <Stack horizontal tokens={{ childrenGap: 10 }}>
+        <Stack horizontal tokens={{ childrenGap: 15 }}>
           <DefaultButton
             text="View"
             onClick={() => setSelectedIncident(item)}
@@ -126,7 +122,7 @@ const IncidentsList: React.FC = () => {
   ];
 
   return (
-    <div style={{ padding: 5 }}>
+    <div style={{ padding: 5, overflowX: "auto", width: "100%" }}>
       <h1>Processed Incidents</h1>
       <DetailsList items={incidents} columns={columns} selectionMode={0} />
       {selectedIncident && (

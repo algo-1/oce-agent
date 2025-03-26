@@ -1,14 +1,18 @@
 import React from "react";
-import { initializeIcons } from "@fluentui/react";
+import { initializeIcons, Stack } from "@fluentui/react";
 import IncidentsList from "./components/IncidentsList";
 
 initializeIcons();
 
 const App: React.FC = () => {
   return (
-    <div>
+    <Stack
+      verticalAlign="center"
+      horizontalAlign="center"
+      styles={{ root: { minHeight: "100vh", padding: 20 } }}
+    >
       <IncidentsList />
-    </div>
+    </Stack>
   );
 };
 
