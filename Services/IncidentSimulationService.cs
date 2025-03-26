@@ -36,7 +36,7 @@ public class IncidentSimulationService : BackgroundService
             Console.WriteLine($"Simulated new incident: {incident.Title}");
 
             // Wait for a random interval before adding the next incident
-            await Task.Delay(random.Next(1000, 12000), stoppingToken); // 1 - 120 seconds
+            await Task.Delay(random.Next(2, 1000), stoppingToken); // 2 ms - 1 second
         }
     }
 
