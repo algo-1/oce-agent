@@ -147,6 +147,11 @@ const IncidentsList: React.FC = () => {
               </Text>
             </>
           )}
+          {!selectedIncident.tsg && (
+            <MessageBar messageBarType={MessageBarType.warning}>
+              No TSG steps available.
+            </MessageBar>
+          )}
           <Stack
             horizontal
             tokens={{ childrenGap: 10 }}
