@@ -10,6 +10,9 @@ import {
   Panel,
   MessageBar,
   MessageBarType,
+  mergeStyleSets,
+  Modal,
+  IconButton,
 } from "@fluentui/react";
 
 interface Incident {
@@ -121,57 +124,86 @@ const IncidentsList: React.FC = () => {
     },
   ];
 
+  const styles = mergeStyleSets({
+    modal: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    container: {
+      width: 600,
+      padding: 20,
+      backgroundColor: "white",
+      borderRadius: 8,
+      boxShadow: "0 2px 4px rgba(0,0,0,0.2)",
+    },
+    closeButton: {
+      position: "absolute",
+      top: 10,
+      right: 10,
+    },
+  });
+
   return (
     <div style={{ padding: 5, overflowX: "auto", width: "100%" }}>
       <h1>Processed Incidents</h1>
       <DetailsList items={incidents} columns={columns} selectionMode={0} />
       {selectedIncident && (
-        <Panel
+        <Modal
           isOpen={!!selectedIncident}
           onDismiss={() => setSelectedIncident(null)}
-          headerText={`Incident Details - ${selectedIncident.title}`}
+          isBlocking={false}
+          containerClassName={styles.modal}
         >
-          <Text>
-            <strong>Severity:</strong> {" " + selectedIncident.severity}
-          </Text>{" "}
-          <Text>
-            <strong>Status:</strong> {" " + selectedIncident.status}
-          </Text>
-          {selectedIncident.tsg && (
-            <>
-              <MessageBar messageBarType={MessageBarType.info}>
-                You can use the steps below to aid mitigation.
-              </MessageBar>
-              <Text block>
-                <pre>{selectedIncident.tsg}</pre>
-              </Text>
-            </>
-          )}
-          {!selectedIncident.tsg && (
-            <MessageBar messageBarType={MessageBarType.warning}>
-              No TSG steps available.
-            </MessageBar>
-          )}
-          <Stack
-            horizontal
-            tokens={{ childrenGap: 10 }}
-            style={{ marginTop: 20 }}
-          >
-            <DefaultButton
-              text="Copy Steps"
-              onClick={() => copyTSGToClipboard(selectedIncident.tsg)}
-            ></DefaultButton>
-            <DefaultButton
-              text="Open Incident"
-              href={selectedIncident.link}
-              target="_blank"
-            ></DefaultButton>
-            <DefaultButton
-              text="Close"
+          <div className={styles.container}>
+            <IconButton
+              iconProps={{ iconName: "Cancel" }}
+              className={styles.closeButton}
               onClick={() => setSelectedIncident(null)}
-            ></DefaultButton>
-          </Stack>
-        </Panel>
+            />
+            <h2>Incident Details - {selectedIncident.title}</h2>
+            <Text>
+              <strong>Severity:</strong> {" " + selectedIncident.severity}
+            </Text>{" "}
+            <Text>
+              <strong>Status:</strong> {" " + selectedIncident.status}
+            </Text>
+            {selectedIncident.tsg && (
+              <>
+                <MessageBar messageBarType={MessageBarType.info}>
+                  You can use the steps below to aid mitigation.
+                </MessageBar>
+                <Text block>
+                  <pre>{selectedIncident.tsg}</pre>
+                </Text>
+              </>
+            )}
+            {!selectedIncident.tsg && (
+              <MessageBar messageBarType={MessageBarType.warning}>
+                No TSG steps available.
+              </MessageBar>
+            )}
+            <Stack
+              horizontal
+              tokens={{ childrenGap: 10 }}
+              style={{ marginTop: 20 }}
+            >
+              <DefaultButton
+                text="Copy Steps"
+                onClick={() => copyTSGToClipboard(selectedIncident.tsg)}
+              ></DefaultButton>
+              <DefaultButton
+                text="Open Incident"
+                href={selectedIncident.link}
+                target="_blank"
+              ></DefaultButton>
+              <DefaultButton
+                text="Close"
+                onClick={() => setSelectedIncident(null)}
+              ></DefaultButton>
+            </Stack>
+          </div>
+        </Modal>
       )}
     </div>
   );
