@@ -1,5 +1,3 @@
-using Microsoft.Extensions.Hosting;
-
 namespace OncallAgent.Services;
 
 public class AgentHostedService : IHostedService

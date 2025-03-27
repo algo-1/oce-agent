@@ -1,4 +1,3 @@
-using Microsoft.Extensions.Hosting;
 using OncallAgent.Models;
 
 namespace OncallAgent.Services;

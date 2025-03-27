@@ -1,7 +1,4 @@
-
-
 using Microsoft.AspNetCore.SignalR;
-using Microsoft.Extensions.Hosting;
 using OncallAgent.Models;
 using OncallAgent.Utils;
 
