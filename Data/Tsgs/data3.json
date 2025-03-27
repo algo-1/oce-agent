@@ -2,11 +2,11 @@
   "Title": "Application Crash on Startup",
   "Description": "Steps to troubleshoot and resolve application crashes during startup.",
   "Steps": [
-    "Check the application logs for error messages.",
-    "Verify that all required dependencies are installed.",
-    "Ensure the application configuration files are correct.",
-    "Run the application in debug mode to identify the root cause.",
-    "Revert to a previous stable version if the issue persists."
+    "- Check the application logs for error messages.",
+    "- Verify that all required dependencies are installed.",
+    "- Ensure the application configuration files are correct.",
+    "- Run the application in debug mode to identify the root cause.",
+    "- Revert to a previous stable version if the issue persists."
   ],
-  "Tags": ["application", "crash", "startup", "troubleshooting"]
+  "Tags": ["application", "crash", "startup"]
 }

@@ -66,8 +66,9 @@ public class TsgService
 
     public async Task<string?> RetrieveRelevantTsgAsync(string query)
     {
-        await foreach (var result in _memory.SearchAsync(CollectionName, query, limit: 1))
+        await foreach (var result in _memory.SearchAsync(CollectionName, query, limit: 1, minRelevanceScore: 0.75))
         {
+            Console.WriteLine($"Found relevant TSG: {result.Metadata.Id} with score: {result.Relevance}");
             return string.Join("\n", result?.Metadata.Description, result?.Metadata.Text); // Get only the first result
         }
         return null; // No relevant TSG found

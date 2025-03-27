@@ -56,9 +56,9 @@ public class IncidentSimulationService : BackgroundService
         // Random incident that does not map to any TSG
         new Incident
         {
-            Title = "Unusual Network Traffic",
-            Description = "The server is experiencing unusual network traffic, possibly indicating a DDoS attack.",
-            Severity = "Sev 2",
+            Title = "Model Hallucinations",
+            Description = "The model is generating incorrect or nonsensical outputs.",
+            Severity = "Sev 4",
             Status = "New",
             AssignedTo = "Team F",
             Link = "http://example.com/incident/6"

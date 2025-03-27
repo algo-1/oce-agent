@@ -2,11 +2,11 @@
   "Title": "High CPU Usage on Server",
   "Description": "Steps to troubleshoot and resolve high CPU usage on a server.",
   "Steps": [
-    "Identify the process consuming the most CPU using tools like Task Manager or `top`.",
-    "Check for any recent deployments or configuration changes.",
-    "Analyze application logs for errors or performance bottlenecks.",
-    "Restart the affected service or application if necessary.",
-    "Scale up resources or optimize the application code if the issue persists."
+    "- Identify the process consuming the most CPU using tools like Task Manager or `top`.",
+    "- Check for any recent deployments or configuration changes.",
+    "- Analyze application logs for errors or performance bottlenecks.",
+    "- Restart the affected service or application if necessary.",
+    "- Scale up resources or optimize the application code if the issue persists."
   ],
-  "Tags": ["cpu", "performance", "server", "troubleshooting"]
+  "Tags": ["cpu", "performance"]
 }

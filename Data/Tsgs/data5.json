@@ -2,11 +2,11 @@
   "Title": "Disk Space Full",
   "Description": "Steps to resolve issues caused by full disk space.",
   "Steps": [
-    "Identify large files or directories using tools like `du` or `WinDirStat`.",
-    "Delete unnecessary files or move them to another storage location.",
-    "Clear temporary files and logs.",
-    "Increase the disk size if possible.",
-    "Set up monitoring to prevent future disk space issues."
+    "- Identify large files or directories using tools like `du` or `WinDirStat`.",
+    "- Delete unnecessary files or move them to another storage location.",
+    "- Clear temporary files and logs.",
+    "- Increase the disk size if possible.",
+    "- Set up monitoring to prevent future disk space issues."
   ],
-  "Tags": ["disk", "storage", "space", "troubleshooting"]
+  "Tags": ["disk", "storage", "space"]
 }

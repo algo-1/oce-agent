@@ -2,11 +2,11 @@
   "Title": "Database Connection Timeout",
   "Description": "Steps to resolve database connection timeout issues.",
   "Steps": [
-    "Verify the database server is running and reachable.",
-    "Check the connection string for accuracy.",
-    "Ensure the database user has the necessary permissions.",
-    "Increase the connection timeout value in the application configuration.",
-    "Check for network latency or firewall rules blocking the connection."
+    "- Verify the database server is running and reachable.",
+    "- Check the connection string for accuracy.",
+    "- Ensure the database user has the necessary permissions.",
+    "- Increase the connection timeout value in the application configuration.",
+    "- Check for network latency or firewall rules blocking the connection."
   ],
-  "Tags": ["database", "connection", "timeout", "troubleshooting"]
+  "Tags": ["database", "connection", "timeout"]
 }
