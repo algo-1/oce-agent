@@ -1,0 +1,13 @@
+{
+  "Id": "api-slow-004",
+  "Title": "Slow API Response",
+  "Description": "Steps to troubleshoot and resolve slow API response times.",
+  "Steps": [
+    "Check the API server's resource usage (CPU, memory, disk).",
+    "Analyze the API logs for slow queries or errors.",
+    "Verify the database performance if the API depends on it.",
+    "Optimize the API code or database queries.",
+    "Implement caching for frequently accessed data."
+  ],
+  "Tags": ["api", "performance", "response", "troubleshooting"]
+}

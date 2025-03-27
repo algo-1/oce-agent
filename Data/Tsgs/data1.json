@@ -1,14 +1,12 @@
 {
-  "Id": "1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p",
-  "Title": "How to Reset Your Password",
-  "Description": "Follow these steps to reset your password if you have forgotten it.",
+  "Title": "High CPU Usage on Server",
+  "Description": "Steps to troubleshoot and resolve high CPU usage on a server.",
   "Steps": [
-    "Go to the login page.",
-    "Click on 'Forgot Password'.",
-    "Enter your registered email address.",
-    "Check your email for the password reset link.",
-    "Click on the link and enter a new password.",
-    "Confirm the new password and submit."
+    "Identify the process consuming the most CPU using tools like Task Manager or `top`.",
+    "Check for any recent deployments or configuration changes.",
+    "Analyze application logs for errors or performance bottlenecks.",
+    "Restart the affected service or application if necessary.",
+    "Scale up resources or optimize the application code if the issue persists."
   ],
-  "Tags": ["password", "reset", "login", "security"]
+  "Tags": ["cpu", "performance", "server", "troubleshooting"]
 }

@@ -1,12 +1,12 @@
 {
-  "Id": "1a2b3c4d-5e6f-7g8h-9i0j-k1l2m3n4o5p6",
-  "Title": "Application Not Found",
-  "Description": "This TSG resolves the issue where the application is not found.",
+  "Title": "Database Connection Timeout",
+  "Description": "Steps to resolve database connection timeout issues.",
   "Steps": [
-    "Check if the application is installed.",
-    "Verify the application path.",
-    "Ensure the application is not blocked by antivirus.",
-    "Reinstall the application if necessary."
+    "Verify the database server is running and reachable.",
+    "Check the connection string for accuracy.",
+    "Ensure the database user has the necessary permissions.",
+    "Increase the connection timeout value in the application configuration.",
+    "Check for network latency or firewall rules blocking the connection."
   ],
-  "Tags": ["application", "not found", "error", "troubleshooting"]
+  "Tags": ["database", "connection", "timeout", "troubleshooting"]
 }
