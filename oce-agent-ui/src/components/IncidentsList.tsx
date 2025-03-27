@@ -7,7 +7,6 @@ import {
   DefaultButton,
   Text,
   Stack,
-  Panel,
   MessageBar,
   MessageBarType,
   mergeStyleSets,
